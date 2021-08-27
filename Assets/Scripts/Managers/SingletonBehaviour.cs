@@ -1,3 +1,4 @@
+using RTSZombie;
 using System;
 using UnityEngine;
 
@@ -16,7 +17,7 @@ using UnityEngine;
 ///     to perform the initialization/cleanup: those methods are guaranteed to only be called once in the
 ///     entire lifetime of the MonoBehaviour
 /// </remarks>
-public class SingletonBehaviour<T> : MonoBehaviour where T : MonoBehaviour
+public class SingletonBehaviour<T> : RZManager where T : MonoBehaviour
 {
     /// <summary>
     ///     <c>true</c> if this Singleton Awake() method has already been called by Unity; otherwise, <c>false</c>.
