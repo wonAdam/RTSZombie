@@ -15,4 +15,14 @@ namespace RTSZombie
         Main,
         World,
     }
+
+    public enum StateStage
+    {
+        OnEnter,
+        OnUpdate,
+        OnExit
+    }
+
+    [System.Serializable]
+    public class Condition : SerializableCallback<bool> { }
 }

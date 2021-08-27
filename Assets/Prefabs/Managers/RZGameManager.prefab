@@ -43,4 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39a1f17bc68eee847a37b53086be3063, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
+  lifeCycle: 0000000001000000
   PrintTrace: 0
+  devCanvas: {fileID: 0}
