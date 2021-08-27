@@ -11,34 +11,24 @@ namespace RTSZombie
             if (keys.Count == 0)
                 return false;
 
-            foreach (var key in keys)
-                if (!Input.GetKeyDown(key))
-                    return false;
+            bool keysPressedExceptLast = true;
+            for (int i = 0; i < keys.Count - 1; ++i)
+                keysPressedExceptLast &= IsKeyPressed(keys[i]);
 
-            return true;
-        }
-
-        public static bool IsKeysPressed(List<KeyCode> keys)
-        {
-            if (keys.Count == 0)
+            if (!keysPressedExceptLast)
                 return false;
 
-            foreach (var key in keys)
-                if (!Input.GetKey(key))
-                    return false;
+            if (!Input.GetKeyDown(keys[keys.Count - 1]))
+                return false;
 
             return true;
-        }
-
-        public static bool IsKeyDown(KeyCode key)
-        {
-            return Input.GetKeyDown(key);
         }
 
         public static bool IsKeyPressed(KeyCode key)
         {
             return Input.GetKey(key);
         }
+
     }
 }
 
