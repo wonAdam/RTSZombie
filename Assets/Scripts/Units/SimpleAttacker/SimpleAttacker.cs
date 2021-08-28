@@ -1,9 +1,6 @@
-﻿using RotaryHeart.Lib.SerializableDictionary;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using BehaviorDesigner.Runtime;
+using UnityEditor;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace RTSZombie
 {
@@ -19,34 +16,106 @@ namespace RTSZombie
             Dead
         }
 
-        public Dictionary<StateType, Func<StateType>> transitionConditions = new Dictionary<StateType, Func<StateType>>();
+        [SerializeField] public Animator simpleAttackerAnimator;
 
-        protected virtual void Start()
+        [SerializeField] public float sightRadius = 2f;
+
+        [SerializeField] public float attackRange = 1f;
+
+        [SerializeField] public string targetTag;
+
+        [SerializeField] public LayerMask targetLayer;
+
+        [SerializeField] public BehaviorTree behaviorTree;
+
+        [HideInInspector] public Transform target;
+
+        public bool HasTarget()
         {
-            transitionConditions.Add(StateType.Idle, IdleCondition);
-            transitionConditions.Add(StateType.Run, RunCondition);
-            transitionConditions.Add(StateType.Attack, AttackCondition);
-            transitionConditions.Add(StateType.Dead, DeadCondition);
+            return target != null;
         }
 
-        protected virtual StateType IdleCondition()
+        public bool IsTargetInAttackRange()
         {
-            return StateType.NONE;
+            if (HasTarget())
+            {
+                if (IsTargetInRange(attackRange))
+                    return true;
+            }
+
+            return false;
         }
 
-        protected virtual StateType RunCondition()
+        public bool IsTargetInSightRange()
         {
-            return StateType.NONE;
+            // 이미 target이 있음.
+            if(HasTarget())
+            {
+                if (IsTargetInRange(sightRadius))
+                    return true;
+                else
+                    target = null;
+            }
+
+            return IsTargetLayerInRange();
         }
 
-        protected virtual StateType DeadCondition()
+        private bool IsTargetInRange(float range)
         {
-            return StateType.NONE;
+            float distance = Vector2.Distance(
+                        new Vector2(transform.position.x, transform.position.z),
+                        new Vector2(target.position.x, target.position.z)
+                        );
+
+            if (distance <= range)
+            {
+                return true;
+            }
+
+            return false;
         }
 
-        protected virtual StateType AttackCondition()
+        private bool IsTargetLayerInRange()
         {
-            return StateType.NONE;
+            // 아직 target이 없으면 범위내에 새로운 타겟을 찾음
+            Collider[] enemyColliders = Physics.OverlapSphere(transform.position, sightRadius, targetLayer);
+
+            if (enemyColliders.Length > 0)
+            {
+                float minDistance = float.MaxValue;
+                Transform minDistanceTransform = null;
+                foreach (var col in enemyColliders)
+                {
+                    float distance = Vector2.Distance(
+                        new Vector2(transform.position.x, transform.position.z),
+                        new Vector2(col.transform.position.x, col.transform.position.z)
+                        );
+
+                    if (minDistance > distance)
+                    {
+                        minDistance = distance;
+                        minDistanceTransform = col.transform;
+                    }
+                }
+
+                target = minDistanceTransform;
+                return true;
+            }
+
+
+            target = null;
+            return false;
+        }
+
+        private void OnDrawGizmosSelected()
+        {
+            // Sight Radius
+            Handles.color = Color.red;
+            Handles.DrawWireDisc(transform.position, transform.up, sightRadius);
+
+            // Attack Radius
+            Handles.color = Color.green;
+            Handles.DrawWireDisc(transform.position, transform.up, attackRange);
         }
     }
 }

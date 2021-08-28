@@ -12,9 +12,11 @@ GameObject:
   - component: {fileID: 2297177058692777788}
   - component: {fileID: 1972689708100407996}
   - component: {fileID: 8491041323078799662}
-  m_Layer: 0
+  - component: {fileID: 1332323590065345852}
+  - component: {fileID: 1606874750044701911}
+  m_Layer: 6
   m_Name: Soldier
-  m_TagString: Untagged
+  m_TagString: Friendly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -66,6 +68,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 054ac90de367467448feb6459e704b4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  simpleAttackerAnimator: {fileID: 2297177058692777788}
+  sightRadius: 30
+  attackRange: 25
+  targetTag: Enemy
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  behaviorTree: {fileID: 1332323590065345852}
+  target: {fileID: 0}
+  currentStateType: 0
 --- !u!136 &8491041323078799662
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -80,6 +92,67 @@ CapsuleCollider:
   m_Height: 2.7
   m_Direction: 1
   m_Center: {x: 0, y: 1.2, z: 0}
+--- !u!114 &1332323590065345852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2297177058685367424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d7b55c7ecdb49a4a89fa5e6f9022861, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startWhenEnabled: 1
+  asynchronousLoad: 0
+  pauseWhenDisabled: 0
+  restartWhenComplete: 0
+  logTaskChanges: 0
+  group: 0
+  resetValuesOnRestart: 0
+  externalBehavior: {fileID: 11400000, guid: 34acd5dcc85616c43ad6c3c3b83fce39, type: 2}
+  mBehaviorSource:
+    behaviorName: SimeplAttacker_Soldier
+    behaviorDescription: 
+    mTaskData:
+      types: []
+      parentIndex: 
+      startIndex: 
+      variableStartIndex: 
+      JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(174.714264,-181.938782)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Repeater","NodeData":{"Offset":"(-3.785736,95.39456)"},"ID":1,"Name":"Repeater","Instant":true,"SharedIntcount":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":null,"Int32mValue":0},"SharedBoolrepeatForever":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolendOnFailure":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(0,102.222229)"},"ID":2,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-276.484375,152.100952)"},"ID":3,"Name":"Sequence","Instant":true,"AbortTypeabortType":"Both","Children":[{"Type":"SAWithInAttackRange","NodeData":{"Offset":"(-137.622482,136.464264)"},"ID":4,"Name":"SA
+        With In Attack Range","Instant":true},{"Type":"SAAttack","NodeData":{"Offset":"(8.908675,140.854523)"},"ID":5,"Name":"SA
+        Attack","Instant":true}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(3.32599068,154.269089)"},"ID":6,"Name":"Sequence","Instant":true,"AbortTypeabortType":"Both","Children":[{"Type":"SAWithInSightRange","NodeData":{"Offset":"(-99.9260559,109.82457)"},"ID":7,"Name":"SA
+        With In Sight Range","Instant":true},{"Type":"SAPursue","NodeData":{"Offset":"(71.07666,122.019691)"},"ID":8,"Name":"SA
+        Pursue","Instant":true}]},{"Type":"SAIdle","NodeData":{"Offset":"(260.914032,148.713425)"},"ID":9,"Name":"SA
+        Idle","Instant":true}]}]}}'
+      fieldSerializationData:
+        typeName: []
+        fieldNameHash: 
+        startIndex: 
+        dataPosition: 
+        unityObjects: []
+        byteData: 
+        byteDataArray: 
+      Version: 1.7.1
+  gizmoViewMode: 2
+  showBehaviorDesignerGizmo: 1
+--- !u!54 &1606874750044701911
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2297177058685367424}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 80
+  m_CollisionDetection: 0
 --- !u!1 &2297177058685367426
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,30 +6,7 @@ namespace RTSZombie
 {
     public class Zombie : SimpleAttacker
     {
-        protected override void Start()
-        {
-            base.Start();
-        }
 
-        protected override StateType IdleCondition()
-        {
-            return base.IdleCondition();
-        }
-
-        protected override StateType RunCondition()
-        {
-            return base.RunCondition();
-        }
-
-        protected override StateType AttackCondition()
-        {
-            return base.AttackCondition();
-        }
-
-        protected override StateType DeadCondition()
-        {
-            return base.DeadCondition();
-        }
     }
 
 }
