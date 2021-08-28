@@ -20,13 +20,6 @@ namespace RTSZombie
 
         protected override void SingletonDestroyed()
         {
-
-        }
-
-        /// </remarks>
-        protected override void NotifyInstanceRepeated()
-        {
-            Destroy(gameObject);
         }
 
 

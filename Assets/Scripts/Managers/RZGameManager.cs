@@ -1,7 +1,9 @@
 using RTSZombie.Dev;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace RTSZombie
 {
@@ -9,14 +11,8 @@ namespace RTSZombie
     {
         [SerializeField] private DevCanvas devCanvas;
 
-        /// <summary>
-        ///     Unity3D Awake method.
-        /// </summary>
-        /// <remarks>
-        ///     This method will only be called once even if multiple instances of the
-        ///     singleton MonoBehaviour exist in the scene.
-        ///     You can override this method in derived classes to customize the initialization of your MonoBehaviour
-        /// </remarks>
+        [SerializeField] private List<RZManager> managerPrefabs;
+
         protected override void SingletonAwakened()
         {
             if (RZDebug.IsEditorPlay())
@@ -25,47 +21,56 @@ namespace RTSZombie
                     Instantiate(devCanvas);
             }
 
+            SceneManager.sceneLoaded += OnSceneLoaded;
+
         }
 
-        /// <summary>
-        ///     Unity3D Start method.
-        /// </summary>
-        /// <remarks>
-        ///     This method will only be called once even if multiple instances of the
-        ///     singleton MonoBehaviour exist in the scene.
-        ///     You can override this method in derived classes to customize the initialization of your MonoBehaviour
-        /// </remarks>
         protected override void SingletonStarted()
         {
 
         }
 
 
-        /// <summary>
-        ///     Unity3D OnDestroy method.
-        /// </summary>
-        /// <remarks>
-        ///     This method will only be called once even if multiple instances of the
-        ///     singleton MonoBehaviour exist in the scene.
-        ///     You can override this method in derived classes to customize the initialization of your MonoBehaviour
-        /// </remarks>
         protected override void SingletonDestroyed()
         {
-
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+            base.SingletonDestroyed();
         }
 
-
-        /// <summary>
-        ///     If a duplicated instance of a Singleton MonoBehaviour is loaded into the scene
-        ///     this method will be called instead of SingletonAwakened(). That way you can customize
-        ///     what to do with repeated instances.
-        /// </summary>
-        /// <remarks>
-        ///     The default approach is delete the duplicated MonoBehaviour
-        /// </remarks>
         protected override void NotifyInstanceRepeated()
         {
             Destroy(gameObject);
+        }
+
+        private void OnSceneLoaded(Scene nextScene, LoadSceneMode sceneMode)
+        {
+            foreach(var sceneEnum in Enum.GetValues(typeof(SceneType)))
+            {
+                if(sceneEnum.ToString() == nextScene.name)
+                {
+                    RZDebug.Log(this, $"OnSceneLoaded {nextScene.name}");
+                    UpdateManagersLifeCycle((SceneType)sceneEnum);
+                    return;
+                }
+            }
+
+            RZDebug.Log(this, $"OnSceneLoaded Wrong SceneName");
+        }
+
+        private void UpdateManagersLifeCycle(SceneType sceneType)
+        {
+            foreach(var manager in managerPrefabs)
+            {
+                if(manager.lifeCycle.Contains(sceneType))
+                {
+
+                }
+                else
+                {
+                    if (manager.IsManagerInstanceExist())
+                        manager.DestroyManagerInstance();
+                }
+            }
         }
     }
 

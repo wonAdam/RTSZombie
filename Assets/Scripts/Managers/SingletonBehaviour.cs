@@ -1,4 +1,4 @@
-using RTSZombie;
+﻿using RTSZombie;
 using System;
 using UnityEngine;
 
@@ -17,22 +17,22 @@ using UnityEngine;
 ///     to perform the initialization/cleanup: those methods are guaranteed to only be called once in the
 ///     entire lifetime of the MonoBehaviour
 /// </remarks>
-public class SingletonBehaviour<T> : RZManager where T : MonoBehaviour
+public class SingletonBehaviour<T> : RZManager where T : RZManager
 {
-    /// <summary>
-    ///     <c>true</c> if this Singleton Awake() method has already been called by Unity; otherwise, <c>false</c>.
-    /// </summary>
-    public static bool IsAwakened { get; private set; }
+    ///// <summary>
+    /////     <c>true</c> if this Singleton Awake() method has already been called by Unity; otherwise, <c>false</c>.
+    ///// </summary>
+    //public static bool IsAwakened { get; private set; }
 
-    /// <summary>
-    ///     <c>true</c> if this Singleton Start() method has already been called by Unity; otherwise, <c>false</c>.
-    /// </summary>
-    public static bool IsStarted { get; private set; }
+    ///// <summary>
+    /////     <c>true</c> if this Singleton Start() method has already been called by Unity; otherwise, <c>false</c>.
+    ///// </summary>
+    //public static bool IsStarted { get; private set; }
 
-    /// <summary>
-    ///     <c>true</c> if this Singleton OnDestroy() method has already been called by Unity; otherwise, <c>false</c>.
-    /// </summary>
-    public static bool IsDestroyed { get; private set; }
+    ///// <summary>
+    /////     <c>true</c> if this Singleton OnDestroy() method has already been called by Unity; otherwise, <c>false</c>.
+    ///// </summary>
+    //public static bool IsDestroyed { get; private set; }
 
     /// <summary>
     ///     Global access point to the unique instance of this class.
@@ -41,15 +41,36 @@ public class SingletonBehaviour<T> : RZManager where T : MonoBehaviour
     {
         get
         {
-            if (_instance == null)
-            {
-                if (IsDestroyed) return null;
+            //if (_instance == null)
+            //{
+            //    if (IsDestroyed) return null;
 
-                _instance = FindExistingInstance() ?? CreateNewInstance();
-            }
+            //    _instance = FindExistingInstance() ?? CreateNewInstance();
+            //}
             return _instance;
         }
     }
+
+    public override bool IsManagerInstanceExist() => Instance != null;
+
+    public override bool DestroyManagerInstance()
+    {
+        if(IsManagerInstanceExist())
+        {
+            Destroy(Instance.gameObject);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public override RZManager CreateManagerInstance()
+    {
+        return CreateNewInstance();
+    }
+
 
     #region Singleton Implementation
 
@@ -126,7 +147,8 @@ public class SingletonBehaviour<T> : RZManager where T : MonoBehaviour
     /// </remarks>
     protected virtual void NotifyInstanceRepeated()
     {
-        Component.Destroy(this.GetComponent<T>());
+        //Component.Destroy(this.GetComponent<T>());
+        Destroy(gameObject);
     }
 
     #endregion
@@ -156,29 +178,37 @@ public class SingletonBehaviour<T> : RZManager where T : MonoBehaviour
         }
 
 
-        if (!IsAwakened)
-        {
-            PrintLog(string.Format(
+        //if (!IsAwakened)
+        //{
+        //    PrintLog(string.Format(
+        //        "Awake() Singleton with type {0} in the GameObject {1}",
+        //        this.GetType(), this.gameObject.name));
+
+        //    SingletonAwakened();
+        //    IsAwakened = true;
+        //}
+
+        // 파괴되고 다른 Scene에서 다시 생성될 경우 다시 Awake를 호출해줘야한다.
+        PrintLog(string.Format(
                 "Awake() Singleton with type {0} in the GameObject {1}",
                 this.GetType(), this.gameObject.name));
 
-            SingletonAwakened();
-            IsAwakened = true;
-        }
+        SingletonAwakened();
+        //IsAwakened = true;
 
     }
 
     void Start()
     {
-        // do not start it twice
-        if (IsStarted) return;
+        //// do not start it twice
+        //if (IsStarted) return;
 
         PrintLog(string.Format(
             "Start() Singleton with type {0} in the GameObject {1}",
             this.GetType(), this.gameObject.name));
 
         SingletonStarted();
-        IsStarted = true;
+        //IsStarted = true;
     }
 
     void OnDestroy()
@@ -195,7 +225,7 @@ public class SingletonBehaviour<T> : RZManager where T : MonoBehaviour
         // However as this is happening during the Unity app shutdown for some reason the newly created GO
         // is kept in the scene instead of being discarded after the game exists play mode.
         // (Unity bug?)
-        IsDestroyed = true;
+        //IsDestroyed = true;
 
         PrintLog(string.Format(
             "Destroy() Singleton with type {0} in the GameObject {1}",
@@ -240,6 +270,8 @@ public class SingletonBehaviour<T> : RZManager where T : MonoBehaviour
                  );
         }
     }
+
+    
 
     #endregion
 }

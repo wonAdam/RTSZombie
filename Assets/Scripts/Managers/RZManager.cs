@@ -9,6 +9,12 @@ namespace RTSZombie
         [SerializeField] public ManagerType type;
 
         [SerializeField] public List<SceneType> lifeCycle;
+
+        public abstract bool IsManagerInstanceExist();
+
+        public abstract bool DestroyManagerInstance();
+
+        public abstract RZManager CreateManagerInstance();
     }
 }
 

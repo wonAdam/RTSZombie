@@ -8,6 +8,8 @@ namespace RTSZombie
     {
         Game,
         Scene,
+        Input,
+        UI,
     }
 
     public enum SceneType
@@ -16,13 +18,4 @@ namespace RTSZombie
         World,
     }
 
-    public enum StateStage
-    {
-        OnEnter,
-        OnUpdate,
-        OnExit
-    }
-
-    [System.Serializable]
-    public class Condition : SerializableCallback<bool> { }
 }
