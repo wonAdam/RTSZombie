@@ -11,6 +11,12 @@ namespace RTSZombie
 
         protected virtual void Reset()
         {
+            RZUnitData unitData = Resources.Load<RZUnitDataContainer>("Unit/UnitDataContainer").dataPerUnit[unitEnum];
+
+            gameObject.tag = unitData.selfTag;
+
+            gameObject.layer = (int)Mathf.Log(unitData.selfLayer, 2);
+
             foreach (var unitE in Enum.GetValues(typeof(UnitEnum)))
             {
                 if(unitE.ToString() == GetType().Name)

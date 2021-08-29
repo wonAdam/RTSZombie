@@ -18,6 +18,10 @@ namespace RTSZombie
 
         [SerializeField] public LayerMask targetLayer;
 
+        [SerializeField] public string selfTag;
+
+        [SerializeField] public LayerMask selfLayer;
+
     }
 
 }

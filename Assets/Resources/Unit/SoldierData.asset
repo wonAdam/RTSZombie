@@ -19,3 +19,7 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 128
+  selfTag: Friendly
+  selfLayer:
+    serializedVersion: 2
+    m_Bits: 64

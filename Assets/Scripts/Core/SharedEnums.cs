@@ -28,4 +28,10 @@ namespace RTSZombie
         Zombie,
     }
 
+    public static class SharedValue
+    {
+        public static string FriendlyTag = "Friendly";
+        public static string EnemyTag = "Enemy";
+    }
+
 }

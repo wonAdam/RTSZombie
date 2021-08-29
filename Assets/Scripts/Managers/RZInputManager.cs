@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,8 @@ namespace RTSZombie
 {
     public class RZInputManager : SingletonBehaviour<RZInputManager>
     {
+        public List<RZUnit> selectedUnits = new List<RZUnit>();
+
         protected override void SingletonAwakened()
         {
 
@@ -21,5 +24,18 @@ namespace RTSZombie
 
         }
 
+
+        public void SelectUnits(List<RZUnit> units)
+        {
+            selectedUnits.Clear();
+
+            selectedUnits = new List<RZUnit>(units);
+        }
+
+        public void SelectUnit(RZUnit unit)
+        {
+            selectedUnits.Clear();
+            selectedUnits.Add(unit);
+        }
     }
 }
