@@ -23,12 +23,12 @@ namespace RTSZombie
         }
 
 
-        public void LoadScene(SceneType type, Action<float> onLoad = null)
+        public void LoadScene(SceneEnum type, Action<float> onLoad = null)
         {
             StartCoroutine(LoadSceneCoroutine(type, onLoad));
         }
 
-        private IEnumerator LoadSceneCoroutine(SceneType type, Action<float> onLoad)
+        private IEnumerator LoadSceneCoroutine(SceneEnum type, Action<float> onLoad)
         {
             AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(type.ToString(), LoadSceneMode.Single);
             asyncOperation.allowSceneActivation = false;

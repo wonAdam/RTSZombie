@@ -14,17 +14,17 @@ namespace RTSZombie.Dev
 
         private void Start()
         {
-            dropDown.AddOptions(Enum.GetNames(typeof(SceneType)).ToList());
+            dropDown.AddOptions(Enum.GetNames(typeof(SceneEnum)).ToList());
             onPanelOpen += EmptyInputField;
         }
 
         public void OnClickedLoadButton()
         {
-            foreach(var sceneEnum in Enum.GetValues(typeof(SceneType)))
+            foreach(var sceneEnum in Enum.GetValues(typeof(SceneEnum)))
             {
                 if (sceneEnum.ToString() == dropDown.options[dropDown.value].text)
                 {
-                    RZSceneManager.Instance.LoadScene((SceneType)sceneEnum);
+                    RZSceneManager.Instance.LoadScene((SceneEnum)sceneEnum);
                     return;
                 }
             }
@@ -33,7 +33,7 @@ namespace RTSZombie.Dev
         private void EmptyInputField()
         {
             dropDown.ClearOptions();
-            dropDown.AddOptions(Enum.GetNames(typeof(SceneType)).ToList());
+            dropDown.AddOptions(Enum.GetNames(typeof(SceneEnum)).ToList());
         }
     }
 

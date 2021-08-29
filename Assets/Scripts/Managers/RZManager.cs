@@ -6,9 +6,9 @@ namespace RTSZombie
 {
     public abstract class RZManager : MonoBehaviour
     {
-        [SerializeField] public ManagerType type;
+        [SerializeField] public ManagerEnum type;
 
-        [SerializeField] public List<SceneType> lifeCycle;
+        [SerializeField] public List<SceneEnum> lifeCycle;
 
         public abstract bool IsManagerInstanceExist();
 

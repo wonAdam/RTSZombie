@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace RTSZombie
 {
-    public class SimpleAttacker : MonoBehaviour
+    public class SimpleAttacker : RZUnit
     {
         // Animator Trigger와 이름이 같아야합니다.
         public enum StateType
@@ -18,17 +18,29 @@ namespace RTSZombie
 
         [SerializeField] public Animator simpleAttackerAnimator;
 
-        [SerializeField] public float sightRadius = 2f;
+        [SerializeField] public BehaviorTree behaviorTree;
 
-        [SerializeField] public float attackRange = 1f;
+        [SerializeField] public float sightRadius;
+
+        [SerializeField] public float attackRange;
 
         [SerializeField] public string targetTag;
 
         [SerializeField] public LayerMask targetLayer;
 
-        [SerializeField] public BehaviorTree behaviorTree;
-
         [HideInInspector] public Transform target;
+
+        protected override void Reset()
+        {
+            base.Reset();
+            behaviorTree = GetComponent<BehaviorTree>();
+            simpleAttackerAnimator = GetComponent<Animator>();
+            RZUnitData unitData = Resources.Load<RZUnitDataContainer>("Unit/UnitDataContainer").dataPerUnit[unitEnum];
+            sightRadius = unitData.sightRange;
+            attackRange = unitData.attackRange;
+            targetTag = unitData.targetTag;
+            targetLayer = unitData.targetLayer;
+        }
 
         public bool HasTarget()
         {

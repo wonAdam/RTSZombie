@@ -1449,16 +1449,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 460c4bc7c6776804f80810f7e71081e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unitEnum: 1
   simpleAttackerAnimator: {fileID: 8030546012058918160}
-  sightRadius: 40
+  behaviorTree: {fileID: 7385317039247347166}
+  sightRadius: 30
   attackRange: 2
   targetTag: Friendly
   targetLayer:
     serializedVersion: 2
     m_Bits: 64
-  behaviorTree: {fileID: 7385317039247347166}
   target: {fileID: 0}
-  currentStateType: 0
 --- !u!136 &1471077307405280240
 CapsuleCollider:
   m_ObjectHideFlags: 0

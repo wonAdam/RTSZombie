@@ -9,17 +9,21 @@ namespace RTSZombie
 {
     public class RZGameManager : SingletonBehaviour<RZGameManager>
     {
-        [SerializeField] private DevCanvas devCanvas;
+        [SerializeField] private DevCanvas devCanvasPrefab;
 
         [SerializeField] private List<RZManager> managerPrefabs;
+
+        [SerializeField] private RZGlobalData globalDataSO;
 
         protected override void SingletonAwakened()
         {
             if (RZDebug.IsEditorPlay())
             {
-                if(devCanvas != null)
-                    Instantiate(devCanvas);
+                if(devCanvasPrefab != null)
+                    Instantiate(devCanvasPrefab);
             }
+
+            RZGlobalData.Instance = globalDataSO;
 
             SceneManager.sceneLoaded += OnSceneLoaded;
 
@@ -44,12 +48,12 @@ namespace RTSZombie
 
         private void OnSceneLoaded(Scene nextScene, LoadSceneMode sceneMode)
         {
-            foreach(var sceneEnum in Enum.GetValues(typeof(SceneType)))
+            foreach(var sceneEnum in Enum.GetValues(typeof(SceneEnum)))
             {
                 if(sceneEnum.ToString() == nextScene.name)
                 {
                     RZDebug.Log(this, $"OnSceneLoaded {nextScene.name}");
-                    UpdateManagersLifeCycle((SceneType)sceneEnum);
+                    UpdateManagersLifeCycle((SceneEnum)sceneEnum);
                     return;
                 }
             }
@@ -57,7 +61,7 @@ namespace RTSZombie
             RZDebug.Log(this, $"OnSceneLoaded Wrong SceneName");
         }
 
-        private void UpdateManagersLifeCycle(SceneType sceneType)
+        private void UpdateManagersLifeCycle(SceneEnum sceneType)
         {
             foreach(var manager in managerPrefabs)
             {
