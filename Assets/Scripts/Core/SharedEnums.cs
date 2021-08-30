@@ -6,6 +6,8 @@ namespace RTSZombie
 { 
     public enum ManagerEnum
     {
+        NONE,
+
         Game,
         Scene,
         Input,
@@ -13,25 +15,40 @@ namespace RTSZombie
         Data,
     }
 
-    // 각 Scene의 이름과 똑같아야합니다.
+    // 각 Scene의 이름과 똑같아야합니다. (NONE 제외)
     // RZGameManager.OnSceneLoaded 참고
     public enum SceneEnum
     {
+        NONE,
+
         Main,
         World,
     }
 
-    // 각 "RZUI" + {UI 클래스의 이름}과 똑같아야합니다.
+    // 각 "RZUI" + {UI 클래스의 이름}과 똑같아야합니다. (NONE 제외)
     // RZUIPanel.Reset 참고
-    public enum UIEnum
+    public enum PanelEnum
     {
+        NONE,
+
         ClickReceiver,
     }
 
-    // 각 Unit의 클래스 타입이름과 똑같아야합니다.
+    // 각 "RZUI" + {UI 클래스의 이름}과 똑같아야합니다. (NONE 제외)
+    // RZUIHUD.Reset 참고
+    public enum HUDEnum
+    {
+        NONE,
+
+        WorldBottomHUD,
+    }
+
+    // 각 Unit의 클래스 타입이름과 똑같아야합니다. (NONE 제외)
     // RZUnit.Reset 참고
     public enum UnitEnum
     {
+        NONE,
+
         Soldier,
         Zombie,
     }

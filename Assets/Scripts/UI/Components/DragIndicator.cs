@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace RTSZombie
+namespace RTSZombie.UI
 {
-    public class DragIndicator : RZUIPanel
+    public class DragIndicator : MonoBehaviour
     {
 
     }

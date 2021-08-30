@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
-  lifeCycle: 01000000
+  lifeCycle: 02000000
+  neverDestroyOnLoad: 0
   PrintTrace: 0
   stateMachine: {fileID: 0}
   selectedUnits: []

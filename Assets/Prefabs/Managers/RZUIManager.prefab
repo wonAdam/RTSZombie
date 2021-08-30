@@ -44,8 +44,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 3
-  lifeCycle: 0000000001000000
+  lifeCycle: 0100000002000000
   neverDestroyOnLoad: 1
   PrintTrace: 0
+  hudCanvasPrefab: {fileID: 525152037593057567, guid: 94dd8d34a467fc94eb63fbddd1eebcf6, type: 3}
   mainCanvasPrefab: {fileID: 1547537042945364961, guid: 4ebd60399bd03994b9deba9ced0029eb, type: 3}
   mainEventSystemPrefab: {fileID: 8211243917387612373, guid: 5a71d0d652b2f834a8454e4eb997b382, type: 3}
+  panelInstances: []
+  hudInstances: []

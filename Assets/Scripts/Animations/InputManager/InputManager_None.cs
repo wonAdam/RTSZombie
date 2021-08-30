@@ -13,7 +13,7 @@ namespace RTSZombie
         // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
         override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            var panel = RZUIManager.Instance.OpenPanel(UIEnum.ClickReceiver);
+            var panel = RZUIManager.Instance.OpenPanel(PanelEnum.ClickReceiver);
             panel.transform.SetAsFirstSibling();
             RZUIManager.mainCanvasInstance.RegisterDragEvent(OnEndDrag);
         }
@@ -27,7 +27,7 @@ namespace RTSZombie
         // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
         override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            RZUIManager.Instance.ClosePanel(UIEnum.ClickReceiver);
+            RZUIManager.Instance.ClosePanel(PanelEnum.ClickReceiver);
             RZUIManager.mainCanvasInstance.UnregisterDragEvent();
         }
 

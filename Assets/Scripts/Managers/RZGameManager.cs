@@ -26,7 +26,6 @@ namespace RTSZombie
             }
 
             SceneManager.sceneLoaded += OnSceneLoaded;
-
         }
 
         protected override void SingletonStarted()
@@ -38,7 +37,6 @@ namespace RTSZombie
         protected override void SingletonDestroyed()
         {
             SceneManager.sceneLoaded -= OnSceneLoaded;
-            base.SingletonDestroyed();
         }
 
         protected override void NotifyInstanceRepeated()
@@ -70,7 +68,7 @@ namespace RTSZombie
                 if(manager.lifeCycle.Contains(sceneType))
                 {
                     if (!manager.IsManagerInstanceExist())
-                        manager.CreateManagerInstance();
+                        Instantiate(manager);
                 }
                 else
                 {

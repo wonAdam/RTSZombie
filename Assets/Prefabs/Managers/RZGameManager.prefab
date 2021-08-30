@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  lifeCycle: 0000000001000000
+  lifeCycle: 0100000002000000
   neverDestroyOnLoad: 1
   PrintTrace: 0
   devCanvasPrefab: {fileID: 5650162800088108861, guid: 5f28226b92cb09f4e9f479131b71ce5f, type: 3}

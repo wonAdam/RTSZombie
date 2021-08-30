@@ -22,6 +22,19 @@ namespace RTSZombie
         {
         }
 
+        public SceneEnum GetCurrentScene()
+        {
+            foreach(var sceneEnum in Enum.GetValues(typeof(SceneEnum)))
+            {
+                if (SceneManager.GetActiveScene().name == sceneEnum.ToString())
+                {
+                    return (SceneEnum)sceneEnum;
+                }
+            }
+
+            RZDebug.LogError(this, $"GetCurrentScene() : No Scene Enum Match.");
+            return SceneEnum.NONE;
+        }
 
         public void LoadScene(SceneEnum type, Action<float> onLoad = null)
         {
