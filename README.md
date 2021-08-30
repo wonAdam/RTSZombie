@@ -22,3 +22,9 @@
 맵에는 자원이 퍼져있고 이를 웨이브 중간마다 수집하여 군대를 증강합니다.
 
 맵 퍼져있는 적군 스포닝 기지를 파괴하면 이깁니다.
+
+### Assets from the Asset Store
+
+Asset/_AssetStore 폴더에 넣고 실행해주세요.
+
+- [Flat black universal GUI, 4k UI Kit - over 400 PNG files!](https://assetstore.unity.com/packages/2d/gui/flat-black-universal-gui-4k-ui-kit-over-400-png-files-121298)
