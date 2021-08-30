@@ -10,6 +10,7 @@ namespace RTSZombie
         Scene,
         Input,
         UI,
+        Data,
     }
 
     // 각 Scene의 이름과 똑같아야합니다.
@@ -18,6 +19,13 @@ namespace RTSZombie
     {
         Main,
         World,
+    }
+
+    // 각 "RZUI" + {UI 클래스의 이름}과 똑같아야합니다.
+    // RZUIPanel.Reset 참고
+    public enum UIEnum
+    {
+        ClickReceiver,
     }
 
     // 각 Unit의 클래스 타입이름과 똑같아야합니다.

@@ -5,7 +5,7 @@ using UnityEngine;
 namespace RTSZombie
 {
     [CreateAssetMenu(fileName = "GlobalConfig", menuName = "RTSZombie/GlobalConfig", order = 0)]
-    public class RZGlobalConfig : ScriptableObject
+    public class RZGlobalConfig : RZStaticData<RZGlobalConfig>
     {
 
     }

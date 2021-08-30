@@ -45,10 +45,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   lifeCycle: 0000000001000000
+  neverDestroyOnLoad: 1
   PrintTrace: 0
   devCanvasPrefab: {fileID: 5650162800088108861, guid: 5f28226b92cb09f4e9f479131b71ce5f, type: 3}
   managerPrefabs:
-  - {fileID: 4227617927792634623, guid: 11e11cd77adbb404d9127e0ad7255d6f, type: 3}
-  - {fileID: 90451897816082109, guid: 54b328c7b3c280b47a3a624f677c67b2, type: 3}
-  - {fileID: 4083764681480539507, guid: b05af126e07600946bcdb3c6ceee9c74, type: 3}
-  globalDataSO: {fileID: 11400000, guid: 4cb19e886c6ece848a3635bfb6cfa98c, type: 2}
+    reorderableList:
+      canAdd: 1
+      canRemove: 1
+      draggable: 1
+      expandable: 1
+      multipleSelection: 1
+      isExpanded: 1
+      label:
+        m_Text: Keys
+        m_Image: {fileID: 0}
+        m_Tooltip: 
+      headerHeight: 18
+      footerHeight: 13
+      slideEasing: 0.15
+      verticalSpacing: 2
+      showDefaultBackground: 1
+      elementDisplayType: 0
+      elementNameProperty: 
+      elementNameOverride: 
+      elementIcon: {fileID: 0}
+    reqReferences: {fileID: 0}
+    isExpanded: 1
+    _keyValues: 0100000000000000020000000300000004000000
+    _keys: 0100000000000000020000000300000004000000
+    _values:
+    - {fileID: 4227617927792634623, guid: 11e11cd77adbb404d9127e0ad7255d6f, type: 3}
+    - {fileID: 8032533392452193734}
+    - {fileID: 90451897816082109, guid: 54b328c7b3c280b47a3a624f677c67b2, type: 3}
+    - {fileID: 4083764681480539507, guid: b05af126e07600946bcdb3c6ceee9c74, type: 3}
+    - {fileID: 2773643383877314527, guid: 682730d80ed4ce644b5419072a555e75, type: 3}

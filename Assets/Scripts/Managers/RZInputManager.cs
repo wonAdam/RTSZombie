@@ -7,6 +7,8 @@ namespace RTSZombie
 {
     public class RZInputManager : SingletonBehaviour<RZInputManager>
     {
+        [SerializeField] private Animator stateMachine;
+
         public List<RZUnit> selectedUnits = new List<RZUnit>();
 
         protected override void SingletonAwakened()

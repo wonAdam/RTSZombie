@@ -10,6 +10,8 @@ namespace RTSZombie
 
         [SerializeField] public List<SceneEnum> lifeCycle;
 
+        [SerializeField] public bool neverDestroyOnLoad = false;
+
         public abstract bool IsManagerInstanceExist();
 
         public abstract bool DestroyManagerInstance();

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 90451897816082108}
   - component: {fileID: 90451897816082109}
+  - component: {fileID: 3951067327983618084}
   m_Layer: 0
   m_Name: RZInputManager
   m_TagString: Untagged
@@ -46,3 +47,24 @@ MonoBehaviour:
   type: 2
   lifeCycle: 01000000
   PrintTrace: 0
+  stateMachine: {fileID: 0}
+  selectedUnits: []
+--- !u!95 &3951067327983618084
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 90451897816082110}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f6f9bc6f7ecafa14abc94041ae34e0a3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

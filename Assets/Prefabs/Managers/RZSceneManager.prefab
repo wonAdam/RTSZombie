@@ -45,4 +45,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   lifeCycle: 0000000001000000
+  neverDestroyOnLoad: 1
   PrintTrace: 0

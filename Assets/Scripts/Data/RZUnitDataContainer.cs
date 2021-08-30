@@ -9,7 +9,7 @@ namespace RTSZombie
     public class UnitEnum_UnitData : SerializableDictionaryBase<UnitEnum, RTSZombie.RZUnitData> { }
 
     [CreateAssetMenu (fileName = "UnitDataContainer", menuName = "RTSZombie/UnitDataContainer", order = 0)]
-    public class RZUnitDataContainer : ScriptableObject
+    public class RZUnitDataContainer : RZStaticData<RZUnitDataContainer>
     {
         [SerializeField] public UnitEnum_UnitData dataPerUnit;
     }

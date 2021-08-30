@@ -1,3 +1,4 @@
+using RotaryHeart.Lib.SerializableDictionary;
 using RTSZombie.Dev;
 using System;
 using System.Collections;
@@ -7,13 +8,14 @@ using UnityEngine.SceneManagement;
 
 namespace RTSZombie
 {
+    [System.Serializable]
+    public class ManagerEnum_ManagerPrefab : SerializableDictionaryBase<ManagerEnum, RZManager> { }
+
     public class RZGameManager : SingletonBehaviour<RZGameManager>
     {
         [SerializeField] private DevCanvas devCanvasPrefab;
 
-        [SerializeField] private List<RZManager> managerPrefabs;
-
-        [SerializeField] private RZGlobalData globalDataSO;
+        [SerializeField] private ManagerEnum_ManagerPrefab managerPrefabs;
 
         protected override void SingletonAwakened()
         {
@@ -22,8 +24,6 @@ namespace RTSZombie
                 if(devCanvasPrefab != null)
                     Instantiate(devCanvasPrefab);
             }
-
-            RZGlobalData.Instance = globalDataSO;
 
             SceneManager.sceneLoaded += OnSceneLoaded;
 
@@ -63,16 +63,25 @@ namespace RTSZombie
 
         private void UpdateManagersLifeCycle(SceneEnum sceneType)
         {
-            foreach(var manager in managerPrefabs)
+            foreach(var managerPair in managerPrefabs)
             {
+                RZManager manager = managerPair.Value;
+
                 if(manager.lifeCycle.Contains(sceneType))
                 {
-
+                    if (!manager.IsManagerInstanceExist())
+                        manager.CreateManagerInstance();
                 }
                 else
                 {
                     if (manager.IsManagerInstanceExist())
+                    {
+                        if (manager.neverDestroyOnLoad)
+                            continue;
+
                         manager.DestroyManagerInstance();
+                    }
+                        
                 }
             }
         }
