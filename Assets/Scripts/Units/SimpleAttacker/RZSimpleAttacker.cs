@@ -1,10 +1,11 @@
 ﻿using BehaviorDesigner.Runtime;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
 namespace RTSZombie
 {
-    public class SimpleAttacker : RZUnit
+    public class RZSimpleAttacker : RZUnit
     {
         // Animator Trigger와 이름이 같아야합니다.
         public enum StateType
@@ -34,8 +35,8 @@ namespace RTSZombie
         {
             base.Reset();
             behaviorTree = GetComponent<BehaviorTree>();
-            simpleAttackerAnimator = GetComponent<Animator>();
-            RZUnitData unitData = Resources.Load<RZUnitDataContainer>("Unit/UnitDataContainer").dataPerUnit[unitEnum];
+            simpleAttackerAnimator = GetComponentInChildren<Animator>();
+            RZUnitData unitData = Resources.Load<RZUnitDataContainer>("Data/Unit/UnitDataContainer").dataPerUnit[unitEnum];
             sightRadius = unitData.sightRange;
             attackRange = unitData.attackRange;
             targetTag = unitData.targetTag;

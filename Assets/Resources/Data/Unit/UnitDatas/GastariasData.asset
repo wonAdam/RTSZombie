@@ -10,16 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee4898175309af043837019ac931644a, type: 3}
-  m_Name: SoldierData
+  m_Name: GastariasData
   m_EditorClassIdentifier: 
-  unitPrefab: {fileID: 1972689708100407996, guid: 6fb48d634645a0549a78f99fa242c163, type: 3}
-  sightRange: 40
-  attackRange: 30
-  targetTag: Enemy
+  unitPrefab: {fileID: 8965804202819967027, guid: 0f7313295708324479f51f96df9c985c, type: 3}
+  sightRange: 30
+  attackRange: 5
+  targetTag: Friendly
   targetLayer:
     serializedVersion: 2
-    m_Bits: 128
-  selfTag: Friendly
+    m_Bits: 64
+  selfTag: Enemy
   selfLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 128
+  attackVFXPrefab: {fileID: 0}

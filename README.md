@@ -31,6 +31,8 @@ Asset/_AssetStore 폴더에 넣고 실행해주세요.
 
 - [Sci-Fi Buttons and Panels Pack](https://assetstore.unity.com/packages/2d/gui/sci-fi-buttons-and-panels-pack-142568)
 
+- [SCI FI: GASTAROMORPH PACK](https://assetstore.unity.com/packages/3d/characters/creatures/sci-fi-gastaromorph-pack-158844)
+
 - [RTS Sci-Fi Game Assets v1](https://assetstore.unity.com/packages/3d/environments/sci-fi/rts-sci-fi-game-assets-v1-112251)
 
 - [RTS Sci-Fi Game Assets v2](https://assetstore.unity.com/packages/3d/environments/sci-fi/rts-sci-fi-game-assets-v2-116284)

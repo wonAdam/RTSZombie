@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Gastarias
+  m_Controller: {fileID: 9100000, guid: bb036fffadffea14ea8ef07d4a3396a9, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 692bcc6ad8154904d981ccb1f3a432f5, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 4d7dd19c588a40644989f14b9e5c1e83, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 8114d1656ac28aa4097162fe08e10866, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 3f6837e71ec2754469db921fa6f8d051, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 4ddaa157bc33ec242a56ac4eeb495764, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 4289551219881aa458960eb9d8586697, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 3ec029fa00d30004d8ef2a68fdba6a0f, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 069a19f29f4218c488a9de407d0c55f7, type: 2}

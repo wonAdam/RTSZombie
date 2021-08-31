@@ -10,16 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee4898175309af043837019ac931644a, type: 3}
-  m_Name: ZombieData
+  m_Name: GoliathData
   m_EditorClassIdentifier: 
-  unitPrefab: {fileID: 5487531169667288327, guid: a2525e73f5c67834c8bfee308ec8241f, type: 3}
-  sightRange: 30
-  attackRange: 2
-  targetTag: Friendly
+  unitPrefab: {fileID: 7453643489800822367, guid: fc513c6b40607a04e9381f36023086d9, type: 3}
+  sightRange: 40
+  attackRange: 30
+  targetTag: Enemy
   targetLayer:
     serializedVersion: 2
-    m_Bits: 64
-  selfTag: Enemy
+    m_Bits: 128
+  selfTag: Friendly
   selfLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 64
+  attackVFXPrefab: {fileID: 8990170178012346174, guid: 4191b38643a888d45a2ba1e86c097d08, type: 3}

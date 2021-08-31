@@ -8,8 +8,8 @@ public class SAIdle : Action
 {
     public override void OnStart()
     {
-        SimpleAttacker owner = transform.GetComponent<SimpleAttacker>();
-        owner.simpleAttackerAnimator.SetTrigger(SimpleAttacker.StateType.Idle.ToString());
+        RZSimpleAttacker owner = transform.GetComponent<RZSimpleAttacker>();
+        owner.simpleAttackerAnimator.SetTrigger(RZSimpleAttacker.StateType.Idle.ToString());
     }
 
     public override TaskStatus OnUpdate()

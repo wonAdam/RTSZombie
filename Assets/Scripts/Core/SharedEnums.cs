@@ -49,14 +49,16 @@ namespace RTSZombie
     {
         NONE,
 
-        Soldier,
-        Zombie,
+        Goliath,
+        Gastarias,
     }
 
     public static class SharedValue
     {
         public static string FriendlyTag = "Friendly";
         public static string EnemyTag = "Enemy";
+        public static string ShotVFXSpawnTransform = "ShotVFXSpawn";
+        public static string ShotSFXSpawnTransform = "ShotSFXSpawn";
     }
 
 }

@@ -6,10 +6,10 @@ using UnityEngine;
 
 public class SAWithInSightRange : Conditional
 {
-    private SimpleAttacker owner;
+    private RZSimpleAttacker owner;
     public override void OnStart()
     {
-        owner = transform.GetComponent<SimpleAttacker>();
+        owner = transform.GetComponent<RZSimpleAttacker>();
     }
 
     public override TaskStatus OnUpdate()

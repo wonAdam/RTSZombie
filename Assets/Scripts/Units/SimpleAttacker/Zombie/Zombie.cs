@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace RTSZombie
 {
-    public class Zombie : SimpleAttacker
+    public class Zombie : RZSimpleAttacker
     {
 
     }

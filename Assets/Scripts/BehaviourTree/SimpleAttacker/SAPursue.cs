@@ -6,11 +6,11 @@ using UnityEngine;
 
 public class SAPursue : Action
 {
-    private SimpleAttacker owner;
+    private RZSimpleAttacker owner;
     public override void OnStart()
     {
-        owner = transform.GetComponent<SimpleAttacker>();
-        owner.simpleAttackerAnimator.SetTrigger(SimpleAttacker.StateType.Run.ToString());
+        owner = transform.GetComponent<RZSimpleAttacker>();
+        owner.simpleAttackerAnimator.SetTrigger(RZSimpleAttacker.StateType.Run.ToString());
     }
 
     public override TaskStatus OnUpdate()

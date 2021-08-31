@@ -22,6 +22,9 @@ namespace RTSZombie
 
         [SerializeField] public LayerMask selfLayer;
 
+        [SerializeField] public ParticleSystem attackVFXPrefab;
+
+
     }
 
 }
