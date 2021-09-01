@@ -1,10 +1,6 @@
 # RTSZombie
 
-### 스타1 시절 유즈맵 "입구막기 시리즈" & "OOO에서 살아남기 시리즈"에 영감을 받고 시작한 프로젝트
-
-| ![image](https://user-images.githubusercontent.com/50472273/131211488-09651e71-b3af-41ba-a5d5-dcdd2b7f7889.png) |
-|:--:|
-| <b>입구막기 시리즈</b>|
+### 스타1 시절 유즈맵 "OOO에서 살아남기 시리즈"에 영감을 받고 시작한 프로젝트
 
 | ![image](https://user-images.githubusercontent.com/50472273/131211559-a4d236dd-16dd-4149-b3e4-601a3f8e0754.png) |
 |:--:|
