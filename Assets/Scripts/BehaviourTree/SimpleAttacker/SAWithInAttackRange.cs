@@ -1,26 +1,29 @@
 using BehaviorDesigner.Runtime.Tasks;
-using RTSZombie;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SAWithInAttackRange : Conditional
+namespace RTSZombie
 {
-    private RZSimpleAttacker owner;
-    public override void OnStart()
+    public class SAWithInAttackRange : Conditional
     {
-        owner = transform.GetComponent<RZSimpleAttacker>();
-    }
-
-    public override TaskStatus OnUpdate()
-    {
-        if (owner.IsTargetInAttackRange())
+        private RZSimpleAttacker owner;
+        public override void OnStart()
         {
-            return TaskStatus.Success;
+            owner = transform.GetComponent<RZSimpleAttacker>();
         }
-        else
+
+        public override TaskStatus OnUpdate()
         {
-            return TaskStatus.Failure;
+            if (owner.IsTargetInAttackRange())
+            {
+                return TaskStatus.Success;
+            }
+            else
+            {
+                return TaskStatus.Failure;
+            }
         }
     }
 }
+

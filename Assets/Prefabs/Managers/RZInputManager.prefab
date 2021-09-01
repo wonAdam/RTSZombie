@@ -44,12 +44,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad7a01e4887d870408d9cb36ed3290f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 2
+  type: 3
   lifeCycle: 02000000
   neverDestroyOnLoad: 0
   PrintTrace: 0
-  stateMachine: {fileID: 0}
+  stateMachine: {fileID: 3951067327983618084}
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 64
   selectedUnits: []
+  dragThreshold: 0.5
 --- !u!95 &3951067327983618084
 Animator:
   serializedVersion: 3

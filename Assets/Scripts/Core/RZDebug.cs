@@ -1,3 +1,4 @@
+using BehaviorDesigner.Runtime.Tasks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,6 +11,8 @@ namespace RTSZombie
         public static bool IsEditorPlay() => Application.platform == RuntimePlatform.WindowsEditor;
 
         public static void Log(MonoBehaviour requester, string msg) => Debug.Log($"[{requester.name}] {msg}");
+
+        public static void Log(Task requester, string msg) => Debug.Log($"[{requester.ToString()}] {msg}");
 
         public static void Log(ScriptableObject requester, string msg) => Debug.Log($"[{requester.name}] {msg}");
 

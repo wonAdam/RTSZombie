@@ -40,7 +40,9 @@ namespace RTSZombie
     {
         NONE,
 
-        WorldBottomHUD,
+        MiniMapHUD,
+        SelectedUnitDisplayHUD,
+        UnitCommandHUD,
     }
 
     // 각 Unit의 클래스 타입이름과 똑같아야합니다. (NONE 제외)
@@ -51,6 +53,28 @@ namespace RTSZombie
 
         Goliath,
         Gastarias,
+    }
+
+    // 각 SimpleAttacker의 Animation State의 이름과 똑같아야합니다. (NONE 제외)
+    //
+    public enum SimpleAttackerState
+    {
+        NONE,
+
+        Idle,
+        Run,
+        Attack,
+        Dead
+    }
+
+    // 각 InputManager의 Animation State의 이름과 똑같아야합니다. (NONE 제외)
+    // 
+    public enum InputManagerState
+    {
+        NONE,
+
+        Normal,
+        UnitSelected,
     }
 
     public static class SharedValue

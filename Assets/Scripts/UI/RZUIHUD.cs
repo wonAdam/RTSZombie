@@ -26,7 +26,17 @@ namespace RTSZombie
 
         public void CloseHUD()
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
+        }
+
+        public void OpenHUD()
+        {
+            gameObject.SetActive(true);
+        }
+
+        protected virtual void OnDestroy()
+        {
+            RZUIManager.Instance.OnHUDDestroyed(this);
         }
 
     }

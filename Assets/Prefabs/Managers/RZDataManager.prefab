@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aa8832905cfd6d439b363c13474287c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 4
+  type: 5
   lifeCycle: 0100000002000000
   neverDestroyOnLoad: 1
   PrintTrace: 0

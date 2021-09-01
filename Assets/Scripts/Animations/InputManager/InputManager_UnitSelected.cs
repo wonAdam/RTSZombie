@@ -1,26 +1,79 @@
+using RTSZombie;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class InputManager_UnitSelected : StateMachineBehaviour
 {
+    private List<RZUnit> selectedUnits = new List<RZUnit>();
+
+    [SerializeField] private LayerMask tarrainLayerMask;
+
+    private RZInputManager owner;
+
+    private Animator anim;
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
-    //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
+    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        anim = animator;
+
+        owner = animator.GetComponent<RZInputManager>();
+        RZUIManager.Instance.OpenHUD(HUDEnum.SelectedUnitDisplayHUD);
+        RZUIManager.Instance.OpenHUD(HUDEnum.UnitCommandHUD);
+
+        RZInputManager.Instance.selectedUnits.ForEach(unit => {
+            if (unit != null) unit.SetSelected(true);
+        });
+
+        owner.onLeftClick = OnLeftClick;
+        owner.onRightClick = OnRightClick;
+    }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-    //override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
+    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        
+    }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
+    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        RZInputManager.Instance.selectedUnits.ForEach(unit => {
+            if (unit != null) unit.SetSelected(false);
+        });
+
+        owner.onLeftClick = null;
+        owner.onRightClick = null;
+    }
+
+    private void OnRightClick(Vector2 mousePosition)
+    {
+        Ray clickRay = Camera.main.ScreenPointToRay(mousePosition);
+        if (Physics.Raycast(clickRay.origin, clickRay.direction, out RaycastHit hit, Mathf.Infinity, tarrainLayerMask))
+        {
+            RZInputManager.Instance.selectedUnits.ForEach(unit => {
+                if (unit != null) unit.Move(hit.point);
+            });
+        }
+    }
+
+    private void OnLeftClick(Vector2 mousePosition)
+    {
+        Ray clickRay = Camera.main.ScreenPointToRay(mousePosition);
+        if (Physics.Raycast(clickRay.origin, clickRay.direction, out RaycastHit hit, Mathf.Infinity, RZUnitDataContainer.Instance.friendlyLayer))
+        {
+            if (hit.collider.transform.GetComponent<RZUnit>() != null)
+            {
+                owner.SelectUnit(hit.collider.transform.GetComponent<RZUnit>());
+                anim.SetTrigger(InputManagerState.UnitSelected.ToString());
+                return;
+            }
+        }
+
+        owner.ClearSelectedUnits();
+        anim.SetTrigger(InputManagerState.Normal.ToString());
+    }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
     //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

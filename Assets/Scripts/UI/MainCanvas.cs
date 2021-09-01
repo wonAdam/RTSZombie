@@ -29,28 +29,6 @@ namespace RTSZombie.UI
             canvasScaler.referenceResolution = new Vector2(screenWidth, screenHeight);
         }
 
-        public void RegisterDragEvent(Action<Ray, Ray, Ray, Ray> onDragEnd) // bottomLeft, bottomRight, topRight, topLeft
-        {
-            if(clickReceiver == null)
-            {
-                clickReceiver = GetComponentInChildren<RZUIClickReceiver>();
-                if (clickReceiver == null)
-                    return;
-            }
-            clickReceiver.onDragEnd = onDragEnd;
-        }
-
-        public void UnregisterDragEvent()
-        {
-            if (clickReceiver == null)
-            {
-                clickReceiver = GetComponentInChildren<RZUIClickReceiver>();
-                if (clickReceiver == null)
-                    return;
-            }
-            clickReceiver.onDragEnd = null;
-        }
-
         public void RegisterClickEvent(Action<Ray> onClick)
         {
             if (clickReceiver == null)

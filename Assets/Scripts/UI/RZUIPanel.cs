@@ -7,7 +7,7 @@ namespace RTSZombie
 {
     public class RZUIPanel : MonoBehaviour
     {
-        [SerializeField] public PanelEnum uiEnum;
+        [SerializeField] public PanelEnum panelEnum;
 
         [SerializeField] public bool duplicatable;
 
@@ -17,7 +17,7 @@ namespace RTSZombie
             {
                 if (uiE.ToString() == "RZUI" + GetType().Name)
                 {
-                    uiEnum = (PanelEnum)uiE;
+                    panelEnum = (PanelEnum)uiE;
                     return;
                 }
             }
@@ -26,6 +26,11 @@ namespace RTSZombie
         public virtual void ClosePanel()
         {
             Destroy(gameObject);
+        }
+
+        protected virtual void OnDestroy()
+        {
+            RZUIManager.Instance.OnPanelDestroyed(this);
         }
     }
 }

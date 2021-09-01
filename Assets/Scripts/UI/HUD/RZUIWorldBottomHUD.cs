@@ -1,16 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+//using System.Collections;
+//using System.Collections.Generic;
+//using UnityEngine;
 
-namespace RTSZombie.UI
-{
-    public class RZUIWorldBottomHUD : RZUIHUD
-    {
-        [SerializeField] public ActionSubPanel actionPanel;
+//namespace RTSZombie.UI
+//{
+//    public class RZUIWorldBottomHUD : RZUIHUD
+//    {
+//        [SerializeField] public UnitCommandHUD actionPanel;
 
-        [SerializeField] public MapSubPanel MapPanel;
+//        [SerializeField] public MapSubPanel MapPanel;
 
-        [SerializeField] public UnitSubPanel unitPanel;
-    }
-}
+//        [SerializeField] public SelectedUnitDisplayHUD unitPanel;
+//    }
+//}
 

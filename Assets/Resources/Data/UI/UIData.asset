@@ -62,8 +62,12 @@ MonoBehaviour:
       elementIcon: {fileID: 0}
     reqReferences: {fileID: 0}
     isExpanded: 1
-    _keyValues: 01000000
-    _keys: 01000000
+    _keyValues: 010000000300000002000000
+    _keys: 010000000300000002000000
     _values:
-    - hudPrefab: {fileID: 7278913992511320871, guid: b84cbaa05b725ce428013195e60feea6, type: 3}
+    - hudPrefab: {fileID: 8972026996836455472, guid: 75fa8f58d21e6664db321325325424f3, type: 3}
+      lifeTimeScene: 2
+    - hudPrefab: {fileID: 6501244215431735074, guid: 2391f8f7a3111364ca47d60e4e1e83cc, type: 3}
+      lifeTimeScene: 2
+    - hudPrefab: {fileID: 979949180282539135, guid: 29e0b10f8ae55ae468a68e00ff615ad7, type: 3}
       lifeTimeScene: 2

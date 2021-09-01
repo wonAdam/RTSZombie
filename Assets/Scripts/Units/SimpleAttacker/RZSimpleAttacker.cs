@@ -7,6 +7,17 @@ namespace RTSZombie
 {
     public class RZSimpleAttacker : RZUnit
     {
+        public class MoveCommand
+        {
+            public MoveCommand(Vector3 destination)
+            {
+                this.destination = destination;
+            }
+
+            public Vector3 destination;
+        }
+
+
         // Animator Trigger와 이름이 같아야합니다.
         public enum StateType
         {
@@ -30,6 +41,10 @@ namespace RTSZombie
         [SerializeField] public LayerMask targetLayer;
 
         [HideInInspector] public Transform target;
+
+        [SerializeField] public Vector3 moveDestination;
+
+        public MoveCommand moveCommand = null;
 
         protected override void Reset()
         {
@@ -129,6 +144,11 @@ namespace RTSZombie
             // Attack Radius
             Handles.color = Color.green;
             Handles.DrawWireDisc(transform.position, transform.up, attackRange);
+        }
+
+        public override void Move(Vector3 destination)
+        {
+            moveCommand = new MoveCommand(destination);
         }
     }
 }
