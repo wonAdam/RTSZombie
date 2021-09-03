@@ -8,9 +8,15 @@ namespace RTSZombie
 {
     public class RZInputManager : SingletonBehaviour<RZInputManager>
     {
+        [SerializeField] public bool logMousePosition = true;
+
         [SerializeField] private Animator stateMachine;
 
         public List<RZUnit> selectedUnits = new List<RZUnit>();
+
+        public int cameraMoveThreshold;
+
+        public MainCamera mainCamera;
 
         public Action<Vector2> onLeftDragBegin;
 
@@ -21,6 +27,14 @@ namespace RTSZombie
         public Action<Vector2> onRightClick;
 
         public Action<Vector2> onLeftClick;
+
+        private KeyCode cameraUp;
+
+        private KeyCode cameraDown;
+
+        private KeyCode cameraRight;
+
+        private KeyCode cameraLeft;
 
         public float dragThreshold = 0.5f;
 
@@ -35,7 +49,6 @@ namespace RTSZombie
 
         protected override void SingletonAwakened()
         {
-
         }
 
         protected override void SingletonStarted()
@@ -45,11 +58,86 @@ namespace RTSZombie
             clickReceiver.transform.SetAsFirstSibling();
             clickReceiver.onDragEnd = OnEndDrag_ClickReceiver;
             clickReceiver.onClick = OnClick_ClickReceiver;
+
+            Cursor.lockState = CursorLockMode.Confined;
+            mainCamera = Camera.main.gameObject.AddComponent<MainCamera>();
+            cameraMoveThreshold = RZGlobalConfig.Instance.cameraMoveThreshold;
+
+            cameraUp = RZGlobalConfig.Instance.cameraUp;
+            cameraDown = RZGlobalConfig.Instance.cameraDown;
+            cameraRight = RZGlobalConfig.Instance.cameraRight;
+            cameraLeft = RZGlobalConfig.Instance.cameraLeft;
         }
 
         private void Update()
         {
-            if(Input.GetMouseButtonDown((int)MouseButton.Left))
+            if(logMousePosition)
+            {
+                RZDebug.Log(this, Input.mousePosition.ToString());
+            }
+
+            HandleMouseClickNDrag();
+
+            HandleMousePosition();
+
+            HandleKeyBoardInput();
+        }
+
+        private void HandleKeyBoardInput()
+        {
+            if(Input.GetKey(cameraUp))
+            {
+                mainCamera.MoveCamera(Vector2.up);
+            }
+            if(Input.GetKey(cameraDown))
+            {
+                mainCamera.MoveCamera(Vector2.down);
+            }
+            if (Input.GetKey(cameraRight))
+            {
+                mainCamera.MoveCamera(Vector2.right);
+            }
+            if (Input.GetKey(cameraLeft))
+            {
+                mainCamera.MoveCamera(Vector2.left);
+            }
+        }
+
+        private void HandleMousePosition()
+        {
+            var view = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+            bool isMouseInsideScreen = view.x >= 0 && view.x <= 1 && view.y >= 0 && view.y <= 1;
+            if (!isMouseInsideScreen) 
+                return;
+
+            Vector2 mouseScreenDirection = Vector3.zero;
+            if (Input.mousePosition.x >= Screen.width * ((cameraMoveThreshold - 1f) / cameraMoveThreshold)) // right
+            {
+                mouseScreenDirection.x = 1f;
+            }
+
+            else if (Input.mousePosition.x <= Screen.width * (1f / cameraMoveThreshold)) // left
+            {
+                mouseScreenDirection.x = -1f;
+            }
+
+
+            if (Input.mousePosition.y >= Screen.height * ((cameraMoveThreshold - 1f) / cameraMoveThreshold)) // up
+            {
+                mouseScreenDirection.y = 1f;
+            }
+
+            else if (Input.mousePosition.y <= Screen.height * (1f / cameraMoveThreshold)) // down
+            {
+                mouseScreenDirection.y = -1f;
+            }
+
+            mainCamera.MoveCamera(mouseScreenDirection);
+        }
+
+        private void HandleMouseClickNDrag()
+        {
+            if (Input.GetMouseButtonDown((int)MouseButton.Left))
             {
                 StartCoroutine(OnLeftMouseButtonDown());
             }

@@ -48,11 +48,10 @@ MonoBehaviour:
   lifeCycle: 02000000
   neverDestroyOnLoad: 0
   PrintTrace: 0
+  logMousePosition: 0
   stateMachine: {fileID: 3951067327983618084}
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 64
   selectedUnits: []
+  mainCamera: {fileID: 0}
   dragThreshold: 0.5
 --- !u!95 &3951067327983618084
 Animator:

@@ -12,3 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf4bc8acac7f03947b4cebb451fbcd52, type: 3}
   m_Name: GlobalConfig
   m_EditorClassIdentifier: 
+  cameraMovementSpeed: 20
+  cameraMoveThreshold: 20
+  cameraUp: 119
+  cameraDown: 115
+  cameraRight: 100
+  cameraLeft: 97
