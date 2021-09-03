@@ -8,9 +8,9 @@ namespace RTSZombie
 {
     public abstract class RZUnit : MonoBehaviour
     {
-        [SerializeField] public UnitEnum unitEnum;
+        [SerializeField /*DEBUG*/] public UnitEnum unitEnum;
 
-        [SerializeField] public NavMeshAgent navMeshAgent;
+        [SerializeField /*DEBUG*/] public NavMeshAgent navMeshAgent;
 
         [HideInInspector] public HashSet<RZUnit> friendlyUnitCollisions = new HashSet<RZUnit>();
 
@@ -18,7 +18,7 @@ namespace RTSZombie
 
         [SerializeField /*DEBUG*/] private GameObject selectionIndicatorPrefab;
 
-        protected virtual void Reset()
+        protected virtual void Start()
         {
             foreach (var unitE in Enum.GetValues(typeof(UnitEnum)))
             {

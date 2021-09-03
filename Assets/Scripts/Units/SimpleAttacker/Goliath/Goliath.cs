@@ -7,13 +7,13 @@ namespace RTSZombie
 {
     public class Goliath : RZSimpleAttacker
     {
-        [SerializeField] public List<Transform> attackVFXPosition;
+        [SerializeField /*DEBUG*/] public List<Transform> attackVFXPosition;
 
-        [SerializeField] public ParticleSystem attackVFXPrefab;
+        [SerializeField /*DEBUG*/] public ParticleSystem attackVFXPrefab;
 
-        protected override void Reset()
+        protected override void Start()
         {
-            base.Reset();
+            base.Start();
 
             attackVFXPosition.Clear();
 

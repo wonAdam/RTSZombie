@@ -28,27 +28,25 @@ namespace RTSZombie
             Dead
         }
 
-        [SerializeField] public Animator simpleAttackerAnimator;
+        [SerializeField /*DEBUG*/] public Animator simpleAttackerAnimator;
 
-        [SerializeField] public BehaviorTree behaviorTree;
+        [SerializeField /*DEBUG*/] public BehaviorTree behaviorTree;
 
-        [SerializeField] public float sightRadius;
+        [SerializeField /*DEBUG*/] public float sightRadius;
 
-        [SerializeField] public float attackRange;
+        [SerializeField /*DEBUG*/] public float attackRange;
 
-        [SerializeField] public string targetTag;
+        [SerializeField /*DEBUG*/] public string targetTag;
 
-        [SerializeField] public LayerMask targetLayer;
+        [SerializeField /*DEBUG*/] public LayerMask targetLayer;
 
         [HideInInspector] public Transform target;
 
-        [SerializeField] public Vector3 moveDestination;
-
         public MoveCommand moveCommand = null;
 
-        protected override void Reset()
+        protected override void Start()
         {
-            base.Reset();
+            base.Start();
             behaviorTree = GetComponent<BehaviorTree>();
             simpleAttackerAnimator = GetComponentInChildren<Animator>();
             RZUnitData unitData = Resources.Load<RZUnitDataContainer>("Data/Unit/UnitDataContainer").dataPerUnit[unitEnum];
