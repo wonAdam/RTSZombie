@@ -16,6 +16,9 @@ namespace RTSZombie
         }
         public override TaskStatus OnUpdate()
 		{
+			if(owner.currCommand == null)
+				return TaskStatus.Failure;
+
 			if (commandType == owner.currCommand.GetCommandType())
 				return TaskStatus.Success;
 			else

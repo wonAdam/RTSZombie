@@ -16,6 +16,7 @@ namespace RTSZombie
 
         public override TaskStatus OnUpdate()
         {
+            owner.transform.LookAt(owner.target, Vector3.up);
             return TaskStatus.Running;
         }
     }
