@@ -7,14 +7,37 @@ namespace RTSZombie
 {
     public class RZSimpleAttacker : RZUnit
     {
-        public class MoveCommand
+        public class MoveCommand : SACommand
         {
+            public Vector3 destination;
+
             public MoveCommand(Vector3 destination)
             {
                 this.destination = destination;
             }
 
-            public Vector3 destination;
+            public override CommandType GetCommandType() => CommandType.Move;
+        }
+
+        public class AttackCommand : SACommand
+        {
+            public RZUnit target;
+
+            public AttackCommand(RZUnit target)
+            {
+                this.target = target;
+            }
+
+            public override CommandType GetCommandType() => CommandType.Attack;
+        }
+
+        public class StopCommand : SACommand
+        {
+            public StopCommand()
+            {
+            }
+
+            public override CommandType GetCommandType() => CommandType.Stop;
         }
 
 
@@ -42,7 +65,7 @@ namespace RTSZombie
 
         [HideInInspector] public Transform target;
 
-        public MoveCommand moveCommand = null;
+        public SACommand currCommand = null;
 
         protected override void Start()
         {
@@ -144,9 +167,19 @@ namespace RTSZombie
             Handles.DrawWireDisc(transform.position, transform.up, attackRange);
         }
 
-        public override void Move(Vector3 destination)
+        public override void CommandMove(Vector3 destination)
         {
-            moveCommand = new MoveCommand(destination);
+            currCommand = new MoveCommand(destination);
+        }
+
+        public override void CommandAttack(RZUnit target)
+        {
+            currCommand = new AttackCommand(target);
+        }
+
+        public override void CommandStop()
+        {
+            currCommand = new StopCommand();
         }
     }
 }

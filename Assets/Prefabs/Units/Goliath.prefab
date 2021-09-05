@@ -124,7 +124,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   target: {fileID: 0}
-  moveDestination: {x: 0, y: 0, z: 0}
   attackVFXPosition:
   - {fileID: 4052461570960994732}
   - {fileID: 611074433725676471}
@@ -149,7 +148,7 @@ MonoBehaviour:
   logTaskChanges: 0
   group: 0
   resetValuesOnRestart: 0
-  externalBehavior: {fileID: 11400000, guid: 34acd5dcc85616c43ad6c3c3b83fce39, type: 2}
+  externalBehavior: {fileID: 11400000, guid: 6ab834d2bcb5fb74f8250e57d19d5d0a, type: 2}
   mBehaviorSource:
     behaviorName: Goliath
     behaviorDescription: 

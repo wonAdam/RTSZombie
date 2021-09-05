@@ -28,15 +28,17 @@ namespace RTSZombie
 
         public Action<Vector2> onLeftClick;
 
-        private KeyCode cameraUp;
+        private KeyCode cameraUpKey;
 
-        private KeyCode cameraDown;
+        private KeyCode cameraDownKey;
 
-        private KeyCode cameraRight;
+        private KeyCode cameraRightKey;
 
-        private KeyCode cameraLeft;
+        private KeyCode cameraLeftKey;
 
         public float dragThreshold = 0.5f;
+
+        private RZUIClickReceiver clickReceiver;
 
         // DO NOT CHANGE
         public enum MouseButton
@@ -54,7 +56,7 @@ namespace RTSZombie
         protected override void SingletonStarted()
         {
             RZUIManager.Instance.OpenPanel(PanelEnum.ClickReceiver);
-            var clickReceiver = RZUIManager.Instance.GetPanel<RZUIClickReceiver>();
+            clickReceiver = RZUIManager.Instance.GetPanel<RZUIClickReceiver>();
             clickReceiver.transform.SetAsFirstSibling();
             clickReceiver.onDragEnd = OnEndDrag_ClickReceiver;
             clickReceiver.onClick = OnClick_ClickReceiver;
@@ -63,10 +65,10 @@ namespace RTSZombie
             mainCamera = Camera.main.gameObject.AddComponent<MainCamera>();
             cameraMoveThreshold = RZGlobalConfig.Instance.cameraMoveThreshold;
 
-            cameraUp = RZGlobalConfig.Instance.cameraUp;
-            cameraDown = RZGlobalConfig.Instance.cameraDown;
-            cameraRight = RZGlobalConfig.Instance.cameraRight;
-            cameraLeft = RZGlobalConfig.Instance.cameraLeft;
+            cameraUpKey = RZGlobalConfig.Instance.cameraUpKey;
+            cameraDownKey = RZGlobalConfig.Instance.cameraDownKey;
+            cameraRightKey = RZGlobalConfig.Instance.cameraRightKey;
+            cameraLeftKey = RZGlobalConfig.Instance.cameraLeftKey;
         }
 
         private void Update()
@@ -85,19 +87,19 @@ namespace RTSZombie
 
         private void HandleKeyBoardInput()
         {
-            if(Input.GetKey(cameraUp))
+            if(Input.GetKey(cameraUpKey))
             {
                 mainCamera.MoveCamera(Vector2.up);
             }
-            if(Input.GetKey(cameraDown))
+            if(Input.GetKey(cameraDownKey))
             {
                 mainCamera.MoveCamera(Vector2.down);
             }
-            if (Input.GetKey(cameraRight))
+            if (Input.GetKey(cameraRightKey))
             {
                 mainCamera.MoveCamera(Vector2.right);
             }
-            if (Input.GetKey(cameraLeft))
+            if (Input.GetKey(cameraLeftKey))
             {
                 mainCamera.MoveCamera(Vector2.left);
             }
@@ -291,12 +293,15 @@ namespace RTSZombie
                     dragStart = true;
                     StartCoroutine(OnLeftDragBegin());
                 }
+
+                if (clickReceiver.isDragging)
+                    dragStart = true;
             }
 
             RZDebug.Log(this, "OnLeftMouseButtonDown Exit");
 
-            if (!dragStart && onLeftClick != null)
-                onLeftClick.Invoke(Input.mousePosition);
+            if (!dragStart)
+                onLeftClick?.Invoke(Input.mousePosition);
         }
 
         private IEnumerator OnRightMouseButtonDown()
@@ -314,12 +319,15 @@ namespace RTSZombie
                 {
                     dragStart = true;
                 }
+
+                if (clickReceiver.isDragging)
+                    dragStart = true;
             }
 
             RZDebug.Log(this, "OnRightMouseButtonDown Exit");
 
-            if (!dragStart && onLeftClick != null)
-                onRightClick.Invoke(Input.mousePosition);
+            if (!dragStart)
+                onRightClick?.Invoke(Input.mousePosition);
         }
 
         private IEnumerator OnLeftDragBegin()

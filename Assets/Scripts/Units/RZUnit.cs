@@ -48,6 +48,12 @@ namespace RTSZombie
             selectionIndicatorPrefab = container.selectionIndicatorPrefab;
         }
 
+        public abstract void CommandMove(Vector3 destination);
+
+        public abstract void CommandAttack(RZUnit target);
+
+        public abstract void CommandStop();
+
         public void SetSelected(bool isSelected)
         {
             if(selectionIndicatorInstance == null)
@@ -56,7 +62,6 @@ namespace RTSZombie
             selectionIndicatorInstance.SetActive(isSelected);
         }
 
-        public abstract void Move(Vector3 destination);
 
         private void OnCollisionEnter(Collision collision)
         {

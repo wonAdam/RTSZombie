@@ -53,7 +53,7 @@ public class InputManager_UnitSelected : StateMachineBehaviour
         if (Physics.Raycast(clickRay.origin, clickRay.direction, out RaycastHit hit, Mathf.Infinity, tarrainLayerMask))
         {
             RZInputManager.Instance.selectedUnits.ForEach(unit => {
-                if (unit != null) unit.Move(hit.point);
+                if (unit != null) unit.CommandMove(hit.point);
             });
         }
     }
@@ -61,12 +61,22 @@ public class InputManager_UnitSelected : StateMachineBehaviour
     private void OnLeftClick(Vector2 mousePosition)
     {
         Ray clickRay = Camera.main.ScreenPointToRay(mousePosition);
-        if (Physics.Raycast(clickRay.origin, clickRay.direction, out RaycastHit hit, Mathf.Infinity, RZUnitDataContainer.Instance.friendlyLayer))
+        if (Physics.Raycast(clickRay.origin, clickRay.direction, out RaycastHit friendlyHit, Mathf.Infinity, RZUnitDataContainer.Instance.friendlyLayer))
         {
-            if (hit.collider.transform.GetComponent<RZUnit>() != null)
+            if (friendlyHit.collider.transform.GetComponent<RZUnit>() != null)
             {
-                owner.SelectUnit(hit.collider.transform.GetComponent<RZUnit>());
+                owner.SelectUnit(friendlyHit.collider.transform.GetComponent<RZUnit>());
                 anim.SetTrigger(InputManagerState.UnitSelected.ToString());
+                return;
+            }
+        }
+        else if (Physics.Raycast(clickRay.origin, clickRay.direction, out RaycastHit enemyHit, Mathf.Infinity, RZUnitDataContainer.Instance.enemyLayer))
+        {
+            if (enemyHit.collider.transform.GetComponent<RZUnit>() != null)
+            {
+                RZInputManager.Instance.selectedUnits.ForEach(unit => {
+                    if (unit != null) unit.CommandAttack((enemyHit.collider.transform.GetComponent<RZUnit>()));
+                });
                 return;
             }
         }

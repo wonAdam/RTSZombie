@@ -19,12 +19,15 @@ namespace RTSZombie.UI
 
         private Vector2 draggingPosition;
 
+        public bool isDragging = false;
+
         public Action<Ray, Ray, Ray, Ray> onDragEnd;
 
         public Action<Ray> onClick;
 
         public void OnBeginDrag(PointerEventData eventData)
         {
+            isDragging = true;
             indicatorInstance = Instantiate(dragIndicatorPrefab, RZUIManager.MainCanvas.transform);
 
             beginPosition = eventData.position;
@@ -46,6 +49,8 @@ namespace RTSZombie.UI
 
         public void OnEndDrag(PointerEventData eventData)
         {
+            isDragging = false;
+
             float minX = Mathf.Min(beginPosition.x, draggingPosition.x);
             float maxX = Mathf.Max(beginPosition.x, draggingPosition.x);
             float minY = Mathf.Min(beginPosition.y, draggingPosition.y);

@@ -1,23 +1,22 @@
-using BehaviorDesigner.Runtime.Tasks;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using BehaviorDesigner.Runtime;
+using BehaviorDesigner.Runtime.Tasks;
 
 namespace RTSZombie
 {
-    public class SAPursue : Action
+    public class SADoesAnyCommandExists : Conditional
     {
         private RZSimpleAttacker owner;
         public override void OnStart()
         {
             owner = GetComponent<RZSimpleAttacker>();
-            owner.simpleAttackerAnimator.SetTrigger(RZSimpleAttacker.StateType.Run.ToString());
         }
-
         public override TaskStatus OnUpdate()
         {
-            return TaskStatus.Running;
+            if (owner.currCommand != null)
+                return TaskStatus.Success;
+            else
+                return TaskStatus.Failure;
         }
     }
-
 }

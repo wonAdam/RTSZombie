@@ -11,13 +11,13 @@ namespace RTSZombie
 
         [SerializeField] public int cameraMoveThreshold = 20;
 
-        [SerializeField] public KeyCode cameraUp;
+        [SerializeField] public KeyCode cameraUpKey;
 
-        [SerializeField] public KeyCode cameraDown;
+        [SerializeField] public KeyCode cameraDownKey;
 
-        [SerializeField] public KeyCode cameraRight;
+        [SerializeField] public KeyCode cameraRightKey;
 
-        [SerializeField] public KeyCode cameraLeft;
+        [SerializeField] public KeyCode cameraLeftKey;
 
     }
 
