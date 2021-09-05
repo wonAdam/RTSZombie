@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraMovementSpeed: 20
   cameraMoveThreshold: 20
-  cameraUp: 119
-  cameraDown: 115
-  cameraRight: 100
-  cameraLeft: 97
+  cameraUpKey: 119
+  cameraDownKey: 115
+  cameraRightKey: 100
+  cameraLeftKey: 97
