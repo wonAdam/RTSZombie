@@ -58,7 +58,7 @@ namespace RTSZombie
 
         public override void OnEnd()
         {
-			owner.navMeshAgent.velocity = Vector3.zero;
+			owner.navMeshAgent.destination = transform.position;
         }
     }
 }

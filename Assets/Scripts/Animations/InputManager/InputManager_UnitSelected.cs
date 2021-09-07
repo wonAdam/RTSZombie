@@ -43,6 +43,8 @@ public class InputManager_UnitSelected : StateMachineBehaviour
             if (unit != null) unit.SetSelected(false);
         });
 
+        RZUIManager.Instance.CloseHUD(HUDEnum.SelectedUnitDisplayHUD);
+        RZUIManager.Instance.CloseHUD(HUDEnum.UnitCommandHUD);
         owner.onLeftClick = null;
         owner.onRightClick = null;
     }
@@ -61,7 +63,9 @@ public class InputManager_UnitSelected : StateMachineBehaviour
     private void OnLeftClick(Vector2 mousePosition)
     {
         Ray clickRay = Camera.main.ScreenPointToRay(mousePosition);
-        if (Physics.Raycast(clickRay.origin, clickRay.direction, out RaycastHit friendlyHit, Mathf.Infinity, RZUnitDataContainer.Instance.friendlyLayer))
+        LayerMask friendlyMask = RZUnitDataContainer.Instance.friendlyLayer;
+        LayerMask enemyMask = RZUnitDataContainer.Instance.enemyLayer;
+        if (Physics.Raycast(clickRay.origin, clickRay.direction, out RaycastHit friendlyHit, Mathf.Infinity, friendlyMask))
         {
             if (friendlyHit.collider.transform.GetComponent<RZUnit>() != null)
             {
@@ -70,7 +74,7 @@ public class InputManager_UnitSelected : StateMachineBehaviour
                 return;
             }
         }
-        else if (Physics.Raycast(clickRay.origin, clickRay.direction, out RaycastHit enemyHit, Mathf.Infinity, RZUnitDataContainer.Instance.enemyLayer))
+        else if (Physics.Raycast(clickRay.origin, clickRay.direction, out RaycastHit enemyHit, Mathf.Infinity, enemyMask))
         {
             if (enemyHit.collider.transform.GetComponent<RZUnit>() != null)
             {

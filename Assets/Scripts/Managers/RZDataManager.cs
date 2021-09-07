@@ -20,7 +20,6 @@ namespace RTSZombie
             uiDataSO.Init();
             unitDataContainer = Resources.Load<RZUnitDataContainer>("Data/Unit/UnitDataContainer");
             unitDataContainer.Init();
-
         }
 
         protected override void SingletonStarted()
